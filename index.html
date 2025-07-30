@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://kit.fontawesome.com/7e10403f45.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <header class="app-header container">
+    <h1 id="title">Expense Tracker</h1>
+
+    <div class="header-actions">
+      <button id="theme-toggle" aria-label="Toggle dark mode" class="btn btn-ghost">
+        <i class="fa-solid fa-moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <!--right budget -->
+    <aside class="panel panel--summary" aria-labelledby="budget-section-title">
+      <h2 id="budget-section-title" class="panel__title">Budget overview</h2>
+
+      <div class="budget-overview">
+        <label class="label" for="budget">Monthly budget</label>
+        <input type="number" name="budget" id="budget" min="1" placeholder="Put your salary" />
+
+        <div class="progress">
+          <div class="progress__bar">
+            <div class="progress__fill"></div>
+          </div>
+          <div class="progress__meta">
+            <span class="progress__spent" id="progress-spent">$0</span>
+            <span class="progress__remaining" id="progress-remaining">$0 left</span>
+          </div>
+        </div>
+
+        <div class="summary-stats">
+          <div class="stat">
+            <span class="stat__label">Total expenses</span>
+            <span class="stat__value" id="total-expenses">$0</span>
+          </div>
+          <div class="stat">
+            <span class="stat__label">Remaining</span>
+            <span class="stat__value" id="remaining-budget">$0</span>
+          </div>
+        </div>
+
+        <div class="summary-actions">
+          <button id="reset-month" class="btn btn-outline"><i class="fa-solid fa-rotate"></i> Reset month</button>
+          <button id="export" class="btn"><i class="fa-solid fa-file-export"></i> Export</button>
+        </div>
+      </div>
+
+      <!-- login/account -->
+      <div class="auth-placeholder">
+        <button id="auth-button" class="btn btn-ghost"><i class="fa-regular fa-user"></i> Login</button>
+      </div>
+    </aside>
+
+    <!--form container-->
+    <section class="panel panel--content">
+      <h2 class="visually-hidden">Add & manage expenses</h2>
+
+      <!-- form-->
+      <form id="expense-form" class="form" novalidate>
+        <div class="form-grid">
+          <input id="expenseName" type="text" placeholder="Title" aria-label="Title" />
+          <input class="expensePrice" type="number" placeholder="Amount" min="1" aria-label="Amount" />
+          <select name="select-option" id="options" class="expenseCategory" aria-label="Category">
+            <option value="">Category</option>
+            <option value="bills">Bills</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="food">Food</option>
+            <option value="health">Health</option>
+            <option value="shoppinng">Shopping</option>
+            <option value="transport">Transport</option>
+          </select>
+          <input type="date" name="date" id="date-picker" aria-label="Date" />
+          <button class="addExpense btn" type="submit"><i class="fa-solid fa-plus"></i> Add expense</button>
+        </div>
+      </form>
+
+      <!--search & sort & filter-->
+      <section class="toolbar" aria-label="Search, filter and sort">
+        <div class="toolbar__group">
+          <label class="label" for="search">Search</label>
+          <input type="text" name="search" id="search" placeholder="Search by title" />
+        </div>
+        <div class="toolbar__group">
+          <label class="label" for="filter-category">Category</label>
+          <select id="filter-category">
+            <option value="">All</option>
+            <option value="bills">Bills</option>
+            <option value="entertainment">Entertainment</option>
+            <option value="food">Food</option>
+            <option value="health">Health</option>
+            <option value="shoppinng">Shopping</option>
+            <option value="transport">Transport</option>
+          </select>
+        </div>
+        <div class="toolbar__group">
+          <label class="label" for="sort">Sort by</label>
+          <select name="sort" id="sort">
+            <option value="">All</option>
+            <option value="date-newest">Date (newest)</option>
+            <option value="date-oldest">Date (oldest)</option>
+            <option value="amount-high">Amount (high → low)</option>
+            <option value="amount-low">Amount (low → high)</option>
+            <option value="name">Name (A–Z)</option>
+          </select>
+        </div>
+      </section>
+
+      <!--list-->
+      <div class="list" aria-live="polite">
+        <ul class="expense-list"></ul>
+      </div>
+
+      <!--total -->
+      <div class="total" id="total">
+        <span>Total:</span>
+        <span class="amount" id="total-amount">$0</span>
+      </div>
+
+      <!--error-->
+      <p class="error" role="alert"></p>
+    </section>
+  </main>
+
+  <!--edit modal -->
+  <div class="modal hidden" id="edit-modal" role="dialog" aria-modal="true" aria-labelledby="edit-title-modal">
+    <div class="modal__content">
+      <h2 id="edit-title-modal">Edit Expense</h2>
+      <form id="edit-form">
+        <input type="text" id="edit-title" placeholder="Title" />
+        <input type="number" id="edit-amount" placeholder="Amount" min="1" />
+        <select id="edit-category">
+          <option value="">Category</option>
+          <option value="bills">Bills</option>
+          <option value="entertainment">Entertainment</option>
+          <option value="food">Food</option>
+          <option value="health">Health</option>
+          <option value="shoppinng">Shopping</option>
+          <option value="transport">Transport</option>
+        </select>
+        <input type="date" id="edit-date" />
+        <button type="submit" class="btn">Save Changes</button>
+      </form>
+      <button id="close-modal" class="btn btn-outline">Cancel</button>
+    </div>
+    <div class="modal-overlay"></div>
+  </div>
+
+  <script src="src/script.js"></script>
+  <script>
+    //dark theme
+    document.getElementById('theme-toggle')?.addEventListener('click', () => {
+      const root = document.documentElement;
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    });
+    // local
+    const persisted = localStorage.getItem('theme');
+    if (persisted) document.documentElement.setAttribute('data-theme', persisted);
+  </script>
+</body>
+</html>
