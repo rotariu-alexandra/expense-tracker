@@ -39,9 +39,9 @@ Built using **HTML**, **CSS** and **vanilla JavaScript**, with full data persist
 ---
 ## ✨ Features
 
-- ⚙ Add monthly reset & history view
-- ⚙ Visual charts using Chart.js or Recharts
-- ⚙ Convert to React for better state management
+- 📌 Add monthly reset & history view
+- 📌 Visual charts using Chart.js or Recharts
+- 📌 Convert to React for better state management
 
 ---
 
