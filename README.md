@@ -51,4 +51,4 @@ Built using **HTML**, **CSS** and **vanilla JavaScript**, with full data persist
 
 1. Clone the repo:
    ```bash
-   git clone https://github.com/rotariualexandra/expense-tracker.git
+   git clone https://github.com/rotariu-alexandra/expense-tracker.git
