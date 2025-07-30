@@ -31,10 +31,10 @@ Built using **HTML**, **CSS** and **vanilla JavaScript**, with full data persist
 ## 📸 Screenshots
 
 ### 💻 Desktop View
-![Desktop Screenshot](https://raw.githubusercontent.com/rotariualexandra/expense-tracker/main/assets/ExpenseTracker-screenshotMain-desktop.jpg)
+![Desktop Screenshot](assets/ExpenseTracker-screenshotMain-desktop.jpg)
 
 ### 📱 Mobile View
-![Mobile Screenshot](https://raw.githubusercontent.com/rotariualexandra/expense-tracker/main/assets/ExpenseTracker-screenshotMain-monile-lightVersion.jpg)
+![Mobile Screenshot](assets/ExpenseTracker-screenshotMain-mobile-lightVersion.jpg)
 
 ---
 ## ✨ Features
