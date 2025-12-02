@@ -3,7 +3,7 @@
 A simple, responsive web application that allows users to track and manage their daily expenses.  
 Built using **HTML**, **CSS** and **vanilla JavaScript**, with full data persistence via `localStorage`.
 
-> 🔴 Live demo: ([https://expense-tracker-alexandra.netlify.app](https://6889f4c6cb32cf4436bdfe4f--expensetracker-alexandra.netlify.app/))
+> 🔴 Live demo: ([https://expense-tracker-alexandra.netlify.app](https://6889f655bce3850008a557e1--expensetracker-alexandra.netlify.app/))
 
 ---
 
